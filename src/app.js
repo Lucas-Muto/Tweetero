@@ -11,6 +11,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Rota básica para teste
+app.get("/", (req, res) => {
+  res.send("API Tweteroo está funcionando!");
+});
+
 // Rotas
 app.use(userRoutes);
 app.use(tweetRoutes);

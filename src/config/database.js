@@ -4,12 +4,16 @@ dotenv.config();
 
 const mongoClient = new MongoClient(process.env.DATABASE_URL);
 
-try {
-  await mongoClient.connect();
-  console.log("MongoDB conectado!");
-} catch (err) {
-  console.log(err);
+async function connectDB() {
+  try {
+    await mongoClient.connect();
+    console.log("MongoDB conectado!");
+  } catch (err) {
+    console.log(err);
+  }
 }
+
+connectDB();
 
 const db = mongoClient.db();
 
