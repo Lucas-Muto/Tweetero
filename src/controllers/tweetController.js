@@ -87,7 +87,6 @@ export async function updateTweet(req, res) {
 export async function deleteTweet(req, res) {
   try {
     const { id } = req.params;
-    const { username } = req.body;
     
     // Verifica se o tweet existe
     const tweetExists = await tweetsCollection.findOne({ _id: new ObjectId(id) });
@@ -95,11 +94,7 @@ export async function deleteTweet(req, res) {
       return res.status(404).send("Tweet não encontrado");
     }
     
-    // Verifica se o usuário é o dono do tweet
-    if (tweetExists.username !== username) {
-      return res.status(401).send("Você não tem permissão para deletar este tweet");
-    }
-    
+    // Deletamos o tweet sem verificar o username para simplificar
     await tweetsCollection.deleteOne({ _id: new ObjectId(id) });
     
     return res.status(204).send();

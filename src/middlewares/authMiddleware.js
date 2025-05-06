@@ -1,7 +1,8 @@
 import { usersCollection } from "../config/database.js";
 
 export async function validateUser(req, res, next) {
-  const { username } = req.body;
+  // Obtém o username do corpo, query ou headers da requisição
+  const username = req.body?.username || req.query?.username || req.headers?.username;
 
   if (!username) {
     return res.status(422).send("O nome de usuário é obrigatório");

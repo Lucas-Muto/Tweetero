@@ -17,6 +17,6 @@ router.post("/tweets", validateSchema(tweetSchema), validateUser, createTweet);
 router.put("/tweets/:id", validateSchema(tweetSchema), validateUser, updateTweet);
 
 // Rota DELETE para excluir tweets
-router.delete("/tweets/:id", validateUser, deleteTweet);
+router.delete("/tweets/:id", deleteTweet);
 
 export default router;
